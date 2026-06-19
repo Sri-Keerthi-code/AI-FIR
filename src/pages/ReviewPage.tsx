@@ -1,0 +1,91 @@
+import firData from "../data/firData";
+type ReviewPageProps = {
+  onGenerate: () => void;
+};
+
+function ReviewPage({ onGenerate }: ReviewPageProps) {
+  return (
+    <div
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)",
+        color: "white",
+        padding: "40px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
+        <img
+          src="/ap-police-logo.png"
+          alt="Logo"
+          style={{ width: "70px" }}
+        />
+      </div>
+
+      <h1
+        style={{
+          textAlign: "center",
+          marginBottom: "40px",
+        }}
+      >
+        FIR సమీక్ష
+      </h1>
+
+      <div
+        style={{
+          backgroundColor: "white",
+          color: "#0f172a",
+          maxWidth: "800px",
+          margin: "0 auto",
+          padding: "30px",
+          borderRadius: "16px",
+        }}
+      >
+        <p><strong>పేరు:</strong> {firData.name}</p>
+        <br />
+
+        <p><strong>ఫోన్ నంబర్:</strong> {firData.phone}</p>
+        <br />
+
+        <p><strong>స్థలం:</strong> {firData.location}</p>
+        <br />
+
+        <p><strong>సమయం:</strong> {firData.date}</p>
+        <br />
+
+        <p><strong>నేరం:</strong> {firData.crimeType}</p>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <button
+          onClick={onGenerate}
+          style={{
+            marginTop: "30px",
+            backgroundColor: "#fbbf24",
+            color: "#0f172a",
+            border: "none",
+            padding: "14px 35px",
+            borderRadius: "12px",
+            fontSize: "18px",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          FIR రూపొందించండి
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default ReviewPage;

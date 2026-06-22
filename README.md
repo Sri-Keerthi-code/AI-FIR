@@ -1,73 +1,122 @@
-# React + TypeScript + Vite
+# AI-FIR
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## AI-Powered First Information Report (FIR) Registration System
 
-Currently, two official plugins are available:
+AI-FIR is an intelligent voice-enabled complaint registration system designed to simplify the FIR intake process through speech recognition, multilingual interaction, AI-powered report drafting, and automated document generation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The system allows users to provide complaint details through voice interaction in Telugu, automatically converts speech into structured information, generates a professional FIR summary using Generative AI, and produces a downloadable FIR report in PDF format.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Key Features
 
-## Expanding the ESLint configuration
+### Voice-Based FIR Registration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* Interactive voice-guided complaint registration workflow
+* Telugu language support for enhanced accessibility
+* Hands-free user interaction
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Speech-to-Text Processing
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* Converts spoken Telugu responses into text
+* Accurate transcription using Sarvam AI Speech Recognition
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Text-to-Speech Assistance
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* Questions are delivered through natural voice output
+* Improves usability for users with limited digital literacy
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### AI-Powered FIR Drafting
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* Generates professional FIR summaries using Google Gemini
+* Converts unstructured victim statements into formal report language
+* Produces concise and structured complaint descriptions
+
+### Automated PDF Generation
+
+* Creates downloadable FIR reports
+* Organizes complaint information into a professional format
+* Ready for review and further processing
+
+---
+
+## System Workflow
+
+Victim Complaint (Voice Input)
+
+↓
+
+Speech-to-Text Conversion (Sarvam AI)
+
+↓
+
+Structured Complaint Data Collection
+
+↓
+
+AI FIR Summary Generation (Google Gemini)
+
+↓
+
+PDF FIR Report Generation
+
+↓
+
+Download & Review
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Vite
+
+### Artificial Intelligence
+
+* Google Gemini API
+* Sarvam AI
+
+### Speech Technologies
+
+* Sarvam Speech-to-Text (STT)
+* Sarvam Text-to-Speech (TTS)
+
+### Document Generation
+
+* jsPDF
+
+### Version Control
+
+* Git
+* GitHub
+
+---
+
+## Project Objectives
+
+* Simplify FIR registration through voice interaction
+* Improve accessibility for regional language speakers
+* Reduce manual effort in drafting complaint reports
+* Assist law enforcement personnel with structured complaint documentation
+* Demonstrate the application of Generative AI in public-service workflows
+
+---
+
+## Future Enhancements
+
+* Dynamic AI-driven follow-up questioning
+* Automatic crime classification
+* Multi-language support
+* FIR database integration
+* Police dashboard for complaint management
+* Secure cloud deployment
+* Analytics and reporting module
+
+---
+
+## Disclaimer
+
+This project is an educational and research-oriented prototype developed to explore the application of Artificial Intelligence, Speech Technologies, and Generative AI in FIR registration workflows. It is not an official government or law-enforcement system.

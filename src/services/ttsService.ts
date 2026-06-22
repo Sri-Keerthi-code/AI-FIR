@@ -1,7 +1,7 @@
 import { SarvamAIClient } from "sarvamai";
 
 const client = new SarvamAIClient({
-  apiSubscriptionKey: "sk_sbgzpqgi_9GDP7qfoaa83vcDdSYPxjO6b",
+  apiSubscriptionKey: import.meta.env.VITE_SARVAM_API_KEY,
 });
 
 export async function speakText(text: string) {

@@ -1,9 +1,14 @@
 const firData = {
   name: "",
   phone: "",
+  address: "",
   location: "",
   date: "",
-  crimeType: "",
+  incidentDetails: "",
+  peopleInvolved: "",
+  witnesses: "",
+  damage: "",
+  additionalInfo: "",
 };
 
 export default firData;

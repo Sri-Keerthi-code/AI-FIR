@@ -1,4 +1,5 @@
 import firData from "../data/firData";
+
 type ReviewPageProps = {
   onGenerate: () => void;
 };
@@ -40,7 +41,7 @@ function ReviewPage({ onGenerate }: ReviewPageProps) {
         style={{
           backgroundColor: "white",
           color: "#0f172a",
-          maxWidth: "800px",
+          maxWidth: "900px",
           margin: "0 auto",
           padding: "30px",
           borderRadius: "16px",
@@ -52,13 +53,28 @@ function ReviewPage({ onGenerate }: ReviewPageProps) {
         <p><strong>ఫోన్ నంబర్:</strong> {firData.phone}</p>
         <br />
 
-        <p><strong>స్థలం:</strong> {firData.location}</p>
+        <p><strong>చిరునామా:</strong> {firData.address}</p>
         <br />
 
-        <p><strong>సమయం:</strong> {firData.date}</p>
+        <p><strong>సంఘటన జరిగిన స్థలం:</strong> {firData.location}</p>
         <br />
 
-        <p><strong>నేరం:</strong> {firData.crimeType}</p>
+        <p><strong>సంఘటన జరిగిన సమయం:</strong> {firData.date}</p>
+        <br />
+
+        <p><strong>సంఘటన వివరాలు:</strong> {firData.incidentDetails}</p>
+        <br />
+
+        <p><strong>సంబంధిత వ్యక్తులు:</strong> {firData.peopleInvolved}</p>
+        <br />
+
+        <p><strong>సాక్షులు:</strong> {firData.witnesses}</p>
+        <br />
+
+        <p><strong>నష్టం / ప్రభావం:</strong> {firData.damage}</p>
+        <br />
+
+        <p><strong>అదనపు సమాచారం:</strong> {firData.additionalInfo}</p>
       </div>
 
       <div

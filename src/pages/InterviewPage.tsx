@@ -1,3 +1,9 @@
+import {
+  startRecording,
+  stopRecording,
+  blobToFile,
+  transcribeAudio,
+} from "../services/sttService";
 import firData from "../data/firData";
 import { useEffect, useState } from "react";
 import questions from "../data/questions";
@@ -10,17 +16,17 @@ type InterviewPageProps = {
 
 function InterviewPage({ onFinish }: InterviewPageProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  useEffect(() => {
-  speakText(questions[currentQuestion]);
-}, [currentQuestion]);
+const [currentAnswer, setCurrentAnswer] = useState("");
+const [isRecording, setIsRecording] = useState(false);
 
-  const sampleAnswers = [
-    "రాము",
-    "9876543210",
-    "అనంతపురం",
-    "నిన్న సాయంత్రం",
-    "మొబైల్ దొంగతనం",
-  ];
+const [answers, setAnswers] = useState<string[]>(
+  Array(questions.length).fill("")
+);
+  
+
+  useEffect(() => {
+    speakText(questions[currentQuestion]);
+  }, [currentQuestion]);
 
   return (
     <div
@@ -85,14 +91,33 @@ function InterviewPage({ onFinish }: InterviewPageProps) {
       </div>
 
       {/* Mic */}
-      <div
+      <button
+        onClick={async () => {
+          if (!isRecording) {
+            await startRecording();
+            setIsRecording(true);
+          } else {
+            const audioBlob = await stopRecording();
+
+            const file = blobToFile(audioBlob);
+
+            const transcript = await transcribeAudio(file);
+
+            setCurrentAnswer(transcript);
+
+            setIsRecording(false);
+          }
+        }}
         style={{
-          fontSize: "90px",
+          fontSize: "60px",
           marginTop: "30px",
+          background: "transparent",
+          border: "none",
+          cursor: "pointer",
         }}
       >
-        🎤
-      </div>
+        {isRecording ? "🔴" : "🎤"}
+      </button>
 
       {/* Answer Box */}
       <div
@@ -121,24 +146,37 @@ function InterviewPage({ onFinish }: InterviewPageProps) {
             fontSize: "18px",
           }}
         >
-          {sampleAnswers[currentQuestion]}
+          {currentAnswer}
         </p>
       </div>
 
       {/* Next Button */}
       <button
         onClick={() => {
-          if (currentQuestion < questions.length - 1) {
-            setCurrentQuestion(currentQuestion + 1);
-          } else {
-            firData.name = sampleAnswers[0];
-            firData.phone = sampleAnswers[1];
-            firData.location = sampleAnswers[2];
-            firData.date = sampleAnswers[3];
-            firData.crimeType = sampleAnswers[4];
+          const updatedAnswers = [...answers];
+updatedAnswers[currentQuestion] = currentAnswer;
 
-            onFinish();
-          }
+setAnswers(updatedAnswers);
+
+if (currentQuestion < questions.length - 1) {
+  setCurrentQuestion(currentQuestion + 1);
+  setCurrentAnswer("");
+} else {
+  firData.name = updatedAnswers[0];
+firData.phone = updatedAnswers[1];
+firData.address = updatedAnswers[2];
+firData.location = updatedAnswers[3];
+firData.date = updatedAnswers[4];
+firData.incidentDetails = updatedAnswers[5];
+firData.peopleInvolved = updatedAnswers[6];
+firData.witnesses = updatedAnswers[7];
+firData.damage = updatedAnswers[8];
+firData.additionalInfo = updatedAnswers[9];
+
+  console.log(firData);
+
+  onFinish();
+}
         }}
         style={{
           marginTop: "25px",
